@@ -5,6 +5,7 @@ class Pemesanan extends CI_Controller {
 
     public function index()
     {
+        $this->db->order_by('id', 'DESC');
         $pemesanan = $this->db->get('reservations')->result_array();
         $data = [
             'pemesanan' => $pemesanan

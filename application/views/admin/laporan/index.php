@@ -49,32 +49,37 @@
             <div class="tile">
                 <div class="tile-body">
                 <div class="table-responsive">
-                        <table class="table table-hover table-sm table-bordered" id="sampleTable">
+                        <table class="table table-sm table-bordered">
                             <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>Tanggal</th>
                                     <th>No Transaksi</th>
-                                    <th>Nama Kamar</th>
+                                    <th>Nama Pelanggan</th>
                                     <th>Tipe Kamar</th>
                                     <th>Biaya Sewa</th>
-                                    <th>Tanggal</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($laporan as $key => $l) { ?>
+                                <?php $total=0; foreach ($laporan as $key => $l) { ?>
                                     <?php 
                                         $rsv = $this->db->get_where('reservations', ['id'=>$l['reservation_id']])->row_array();
                                         $class = $this->db->get_where('classes', ['id'=>$rsv['class_id']])->row_array();
+                                        $total+=$l['amount'];
                                     ?>
                                     <tr>
                                         <td><?= $key+1 ?></td>
+                                        <td><?= date('d-m-Y', strtotime($l['created_at'])) ?></td>
                                         <td><?= $l['code'] ?></td>
                                         <td><?= $rsv['name'] ?></td>
                                         <td><?= $class['name'] ?></td>
-                                        <td>Rp. <?= number_format($l['amount']) ?></td>
-                                        <td><?= date('d-m-Y', strtotime($l['created_at'])) ?></td>
+                                        <td align="right">Rp. <?= number_format($l['amount']) ?></td>
                                     </tr>
                                 <?php } ?>
+                                <tr>
+                                    <td align="center" colspan="5"><b>TOTAL</b></td>
+                                    <td align="right"><b>Rp. <?= number_format($total) ?></b></td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

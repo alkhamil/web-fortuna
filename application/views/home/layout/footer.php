@@ -38,6 +38,22 @@
         }
     });
 
+    $('#tgl_lahir').datepicker({
+        format: 'dd mmm yyyy', 
+        uiLibrary: 'bootstrap4',
+        maxDate: today,
+        minDate: new Date(1898, 0, 0),
+        close : function() {
+            var tgllahir = new Date($(this).val());
+            var tglsekarang = new Date();
+            var usia   = (tglsekarang - tgllahir)/1000/60/60/24;
+            if (usia < 6209.25) {
+                alert("Belum cukup umur silahkan ganti form usia");
+                $(this).val("");
+            }
+        }
+    });
+
 
 
     $('#check-out').datepicker({
@@ -92,11 +108,18 @@
                         <tr>
                             <td>Atas Nama</td>
                             <td>:</td>
-                            <td>Fortuna Hotel</td>
+                            <td>Rakacia Hotel</td>
                         </tr>
                     </table>`);
-        $('#btn-lanjut').removeAttr('disabled');
-        $('#btn-lanjut').removeAttr('style');
+        var d = new Date();
+        var n = d.getHours();
+        if (n<17) {
+            $('#btn-lanjut').removeAttr('disabled');
+            $('#btn-lanjut').removeAttr('style');
+        }else {
+            $('#btn-lanjut').attr('disabled');
+            $('#btn-lanjut').attr('style', 'cursor:not-allowed');
+        }
         $('#total').html('<h3>Total yang harus dibayar: Rp. '+num+'</h3>');
         $('#bangCus').show();
     });
@@ -116,11 +139,19 @@
                         <tr>
                             <td>Atas Nama</td>
                             <td>:</td>
-                            <td>Fortuna Hotel</td>
+                            <td>Rakacia Hotel</td>
                         </tr>
                     </table>`);
-        $('#btn-lanjut').removeAttr('disabled');
-        $('#btn-lanjut').removeAttr('style');
+        var d = new Date();
+        var n = d.getHours();
+        if (n<17) {
+            $('#btn-lanjut').removeAttr('disabled');
+            $('#btn-lanjut').removeAttr('style');
+        }else {
+            $('#btn-lanjut').attr('disabled','disabled');
+            $('#btn-lanjut').attr('style', 'cursor:not-allowed');
+            $('#jam').text('Sudah jam 17.00 anda tidak bisa checkin, silahkan checkin sebelum pukul 17.00');
+        }
         $('#total').html('<h3>Total yang harus dibayar: Rp. '+num+'</h3>');
         $('#bangCus').show();
     });
@@ -136,7 +167,9 @@
             rupiah += separator + ribuan.join('.');
         }
         return rupiah;
-    } 
+    }
+
+    
 </script>
   </body>
 </html>

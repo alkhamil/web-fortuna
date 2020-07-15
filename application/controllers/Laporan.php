@@ -5,6 +5,7 @@ class Laporan extends CI_Controller {
 
     public function index()
     {
+        $this->db->order_by('id', 'DESC');
         $this->db->where('created_at >=', date('Y-m-d'));
         $this->db->where('created_at <=', date('Y-m-d'));
         $laporan = $this->db->get('transactions')->result_array();
@@ -23,6 +24,7 @@ class Laporan extends CI_Controller {
         $dari = $this->input->get('dari');
         $sampai = $this->input->get('sampai');
 
+        $this->db->order_by('id', 'DESC');
         $this->db->where('created_at >=', date('Y-m-d', strtotime($dari)));
         $this->db->where('created_at <=', date('Y-m-d', strtotime($sampai)));
         $laporan = $this->db->get('transactions')->result_array();
@@ -38,6 +40,7 @@ class Laporan extends CI_Controller {
 
     public function cetak_pdf($dari, $sampai)
     {
+        $this->db->order_by('id', 'DESC');
         $this->db->where('created_at >=', date('Y-m-d', strtotime($dari)));
         $this->db->where('created_at <=', date('Y-m-d', strtotime($sampai)));
         $laporan = $this->db->get('transactions')->result_array();

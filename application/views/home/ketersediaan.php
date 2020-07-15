@@ -15,19 +15,43 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                <?php  
+                                    $totalKamar = $this->db->get_where('rooms', ['status'=>1])->result_array();
+                                ?>
+                                <a class="nav-link active" id="tab-tipe-all" data-toggle="pill" href="#nav-tipe-all" role="tab" aria-controls="nav-tipe-all" aria-selected="true">All ( Jumlah Kamar: <?= count($totalKamar) ?> )</a>
                                 <?php foreach ($tipekamar as $key => $tk) { ?>
                                     <?php  
                                         $jmlKamar = $this->db->get_where('rooms', ['class_id'=>$tk['id'],'status'=>1])->result_array();
                                     ?>
-                                    <a <?php if ($key==0) { ?> class="nav-link active" <?php }else { ?> class="nav-link" <?php } ?> id="tab-tipe-<?= $tk['id'] ?>" data-toggle="pill" href="#nav-tipe-<?= $tk['id'] ?>" role="tab" aria-controls="nav-tipe-<?= $tk['id'] ?>" aria-selected="true"><?= $tk['name'] ?> ( Jumlah Kamar: <?= count($jmlKamar) ?> )</a>
+                                    <a <?php if ($key==0) { ?> class="nav-link" <?php }else { ?> class="nav-link" <?php } ?> id="tab-tipe-<?= $tk['id'] ?>" data-toggle="pill" href="#nav-tipe-<?= $tk['id'] ?>" role="tab" aria-controls="nav-tipe-<?= $tk['id'] ?>" aria-selected="true"><?= $tk['name'] ?> ( Jumlah Kamar: <?= count($jmlKamar) ?> )</a>
                                 <?php } ?>
                             </div>
                         </div>
                         
                         <div class="col-md-8">
                             <div class="tab-content" id="v-pills-tabContent">
+                                <div class="tab-pane fade show active" id="nav-tipe-all" role="tabpanel" aria-labelledby="tab-tipe-all">
+                                    <div class="row">
+                                        <?php  
+                                            $dataKamar = $this->db->get_where('rooms', ['status'=>1])->result_array();
+                                        ?>
+                                        <?php foreach ($dataKamar as $no => $dk) { ?>
+                                            <div class="col-md-4 mt-1">
+                                                <div class="card">
+                                                    <img class="card-img-top" src="<?= base_url('assets/uploads/'.$tk['photo']) ?>" alt="Card image cap">
+                                                    <div class="card-body">
+                                                        <b class="card-title"><?= $dk['title'] ?></b>
+                                                        <p>Harga: <?= number_format($tk['price']) ?></p>
+                                                        <a href="<?= base_url('pilihkamar/'.$dk['id']) ?>" class="btn btn-primary">Pilih Kamar</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php } ?>
+                                    </div>
+                                </div>
                                 <?php foreach ($tipekamar as $key => $tk) { ?>
-                                    <div <?php if ($key==0) { ?> class="tab-pane fade show active" <?php }else { ?> class="tab-pane fade" <?php } ?> id="nav-tipe-<?= $tk['id'] ?>" role="tabpanel" aria-labelledby="tab-tipe-<?= $tk['id'] ?>">
+                                
+                                    <div <?php if ($key==0) { ?> class="tab-pane fade show" <?php }else { ?> class="tab-pane fade" <?php } ?> id="nav-tipe-<?= $tk['id'] ?>" role="tabpanel" aria-labelledby="tab-tipe-<?= $tk['id'] ?>">
                                         <div class="row">
                                             <?php  
                                                 $dataKamar = $this->db->get_where('rooms', ['class_id'=>$tk['id'],'status'=>1])->result_array();

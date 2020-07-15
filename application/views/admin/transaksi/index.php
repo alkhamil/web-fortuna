@@ -21,6 +21,7 @@
                                     <th>#</th>
                                     <th>No Transaksi</th>
                                     <th>Nama Pelanggan</th>
+                                    <th>Email Pelanggan</th>
                                     <th>Biaya Sewa</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -34,12 +35,12 @@
                                         <td><?= $key+1 ?></td>
                                         <td><?= $t['code'] ?></td>
                                         <td><?= $rsv['name'] ?></td>
+                                        <td><?= $rsv['email'] ?></td>
                                         <td>Rp. <?= number_format($t['amount']) ?></td>
                                         <td>
                                             <?php if ($t['payment_status'] == 0) { ?>
                                                 <a href="<?= base_url('transaksi/approve/'.$t['id']) ?>" class="btn btn-success btn-sm">Approve</a>
                                             <?php } ?>
-                                            <a href="<?= base_url('transaksi/hapus/'.$t['id']) ?>" class="btn btn-sm btn-danger">Hapus</a>
                                             <a class="btn btn-secondary btn-sm" target="_blank" href="<?= base_url('assets/uploads/'.$t['bukti_transfer']) ?>">Lihat Bukti Pembayaran</a>
                                         </td>
                                     </tr>

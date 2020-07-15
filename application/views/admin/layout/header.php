@@ -72,12 +72,6 @@
                     <span class="app-menu__label">Data Pemesanan</span>
                 </a>
             </li>
-            <!-- <li>
-                <a <?php if ($uri=="pemesan") { ?> class="app-menu__item active" <?php } else { ?> class="app-menu__item" <?php } ?> href="<?= base_url('pemesan') ?>">
-                    <i class="app-menu__icon fa fa-users"></i>
-                    <span class="app-menu__label">Data Pelanggan</span>
-                </a>
-            </li> -->
             <li>
                 <a <?php if ($uri=="laporan") { ?> class="app-menu__item active" <?php } else { ?> class="app-menu__item" <?php } ?> href="<?= base_url('laporan') ?>">
                     <i class="app-menu__icon fa fa-file-pdf-o"></i>

@@ -21,37 +21,13 @@
 
     </head>
 
-    <style>
-        .main{
-            background: #4C84FF;
-            height: 97vh;
-        }
-        .vh-all {
-            margin-top: 50%;
-            margin-left: 10px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-            transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-        }
-
-        .bg-left {
-            background: #F5F6FA;
-        }
-
-        .content-title {
-            margin-top: 60%;
-        }
-        .content-title h4 {
-            font-size: 30px;
-        }
-    </style>
-
 </head>
 
 <body>
-    <div class="row main">
-        <div class="col-md-3 bg-left">
-            <div class="card border-0 vh-all">
-                <div class="card-body mt-3">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card" style="margin-top:150px; margin-left:8px">
+                <div class="card-body">
                     <?php 
                         if ($this->session->flashdata('msg')) {
                             $sukses = $this->session->flashdata('msg');
@@ -77,12 +53,9 @@
             </div>
         </div>
         <div class="col-md-8">
-            <div class="row d-flex justify-content-center">
-                <div class="col-md-6">
-                    <div class="content-title text-center text-white">
-                        <h4>HOTEL RAKACIA</h4>
-                        <p>Website untuk pemesanan hotel</p>
-                    </div>
+            <div class="card border-0" style="background-size: cover; border-radius:0px; height: 100vh; width:1000px; background-image:url('<?= base_url('assets/img/login.jpeg') ?>')">
+                <div class="card-body">
+                    
                 </div>
             </div>
         </div>

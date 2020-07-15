@@ -164,7 +164,7 @@ class Home extends CI_Controller {
             $query = $this->db->update('transactions', $trx);
             $this->session->unset_userdata('datacheckin');
             $this->session->set_flashdata('msg', 'Terimakasih sudah melakukan pemesanan');
-            redirect(base_url('/'),'refresh');
+            redirect(base_url('/my-reservation'),'refresh');
         }
     }
 

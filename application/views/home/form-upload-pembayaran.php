@@ -52,7 +52,7 @@
                                 <tr>
                                     <td>Harga Sewa</td>
                                     <td>:</td>
-                                    <td>Rp. <?= number_format($class['price']) ?></td>
+                                    <td>Rp. <?= number_format($class['price']*$dc['durasi-menginap']) ?></td>
                                 </tr>
                             </table>
                         </div>

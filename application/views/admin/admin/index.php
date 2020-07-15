@@ -26,6 +26,7 @@
                                     <th>Email</th>
                                     <th>Password</th>
                                     <th>Level</th>
+                                    <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -37,6 +38,13 @@
                                         <td><?= $a['email'] ?></td>
                                         <td><?= $a['password'] ?></td>
                                         <td><b class="text-info"><?= strtoupper($a['level']) ?></b></td>
+                                        <td>
+                                            <?php if ($a['status'] == 1) { ?>
+                                                <div class="badge badge-success">AKTIF</div>
+                                            <?php }else { ?>
+                                                <div class="badge badge-danger">TIDAK AKTIF</div>
+                                            <?php } ?>
+                                        </td>
                                         <td>
                                             <button data-toggle="modal" data-target="#edit-admin<?= $a['id'] ?>" class="btn btn-info btn-sm">Edit</button>
                                             <a href="<?= base_url('admin/hapus/'.$a['id']) ?>" class="btn btn-sm btn-danger">Hapus</a>
@@ -66,6 +74,15 @@
                                                 <div class="form-group">
                                                     <label>Password</label>
                                                     <input type="password" class="form-control" name="password" required>  
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="utility">
+                                                    <div class="animated-checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="status" <?php if($a['status'] == 1){ ?> checked <?php } ?>><span class="label-text">Aktif</span>
+                                                        </label>
+                                                    </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
@@ -109,6 +126,15 @@
             <div class="form-group">
                 <label>Password</label>
                 <input type="password" class="form-control" name="password" required>                 
+            </div>
+            <div class="form-group">
+                <div class="utility">
+                <div class="animated-checkbox">
+                    <label>
+                        <input type="checkbox" name="status" checked><span class="label-text">Aktif</span>
+                    </label>
+                </div>
+                </div>
             </div>
           </div>
           <div class="modal-footer">

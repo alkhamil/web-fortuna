@@ -13,7 +13,7 @@
   <body>
     <div class="row">
       <div class="col-md-12">
-        <h5 class="text-center">LAPORAN TRANSAKSI PEMESANAN <br> PERIODE <?= $dari ?> s/d <?= $sampai ?></h5>
+        <h5 class="text-center">LAPORAN TRANSAKSI PEMESANAN <br> PERIODE <?= date('d/m/Y', strtotime($dari)) ?> s/d <?= date('d/m/Y', strtotime($sampai)) ?></h5>
         <h5 class="text-center">HOTEL RAKACIA</h5>
         <hr>
       </div>
@@ -22,30 +22,36 @@
       <div class="col-md-12">
         <table class="table table-sm table-bordered">
           <thead>
-          <tr>
-              <th>#</th>
-              <th>No Transaksi</th>
-              <th>Nama Kamar</th>
-              <th>Tipe Kamar</th>
-              <th>Biaya Sewa</th>
-              <th>Tanggal</th>
-          </tr>
+            <tr>
+                <th>#</th>
+                <th>Tanggal</th>
+                <th>No Transaksi</th>
+                <th>Nama Pelanggan</th>
+                <th>Tipe Kamar</th>
+                <th>Biaya Sewa</th>
+            </tr>
           </thead>
           <tbody>
-            <?php foreach ($laporan as $key => $l) { ?>
+
+            <?php $total = 0; foreach ($laporan as $key => $l) { ?>
               <?php 
                   $rsv = $this->db->get_where('reservations', ['id'=>$l['reservation_id']])->row_array();
                   $class = $this->db->get_where('classes', ['id'=>$rsv['class_id']])->row_array();
+                  $total+=$l['amount'];
               ?>
               <tr>
                   <td><?= $key+1 ?></td>
+                  <td><?= date('d-m-Y', strtotime($l['created_at'])) ?></td>
                   <td><?= $l['code'] ?></td>
                   <td><?= $rsv['name'] ?></td>
                   <td><?= $class['name'] ?></td>
-                  <td>Rp. <?= number_format($l['amount']) ?></td>
-                  <td><?= date('d-m-Y', strtotime($l['created_at'])) ?></td>
+                  <td align="right">Rp. <?= number_format($l['amount']) ?></td>
               </tr>
             <?php } ?>
+            <tr>
+              <td colspan="5" align="center"><b>TOTAL</b></td>
+              <td align="right"><b>Rp. <?= number_format($total) ?></b></td>
+            </tr>
           </tbody>
         </table>
       </div>

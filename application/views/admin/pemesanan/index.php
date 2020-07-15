@@ -56,7 +56,6 @@
                                             <?php if ($p['status'] == 1) { ?>
                                                 <a href="<?= base_url('pemesanan/checkout/'.$p['id']) ?>" class="btn btn-sm btn-success">Checkout</a>
                                             <?php } ?>
-                                            <a href="<?= base_url('pemesanan/hapus/'.$p['id']) ?>" class="btn btn-sm btn-danger">Hapus</a>
                                         </td>
                                     </tr>
                                 <?php } ?>

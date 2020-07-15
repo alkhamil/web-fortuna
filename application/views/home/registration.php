@@ -28,7 +28,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Date Of Birth</label>
-                                    <input type="date" class="form-control" name="birthday" required>
+                                    <input type="text" class="form-control" id="tgl_lahir" name="birthday" required autocomplete="off">
                                 </div>
                             </div>
                             <div class="col-md-6">

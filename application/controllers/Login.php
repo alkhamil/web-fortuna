@@ -15,19 +15,24 @@ class Login extends CI_Controller {
         $user = $this->db->get_where('users', ['username'=>$username])->row_array();
         if (!empty($user)) {
             if (sha1($password) == $user['password']) {
-                switch ($user['level']) {
-                    case 'admin':
-                        $this->session->set_userdata('auth', $user);
-                        $this->session->set_flashdata('sukses', 'Anda berhasil login sebagai admin');
-                        redirect(base_url('dashboard'), 'refresh');
-                        break;
-                    case 'customer':
-                        $this->session->set_userdata('auth', $user);
-                        $this->session->set_flashdata('sukses', 'Anda berhasil login sebagai user');
-                        redirect(base_url('/'), 'refresh');
-                        break;
-                    default:
-                        break;
+                if ($user['status'] == 1) {
+                    switch ($user['level']) {
+                        case 'admin':
+                            $this->session->set_userdata('auth', $user);
+                            $this->session->set_flashdata('sukses', 'Anda berhasil login sebagai admin');
+                            redirect(base_url('dashboard'), 'refresh');
+                            break;
+                        case 'customer':
+                            $this->session->set_userdata('auth', $user);
+                            $this->session->set_flashdata('sukses', 'Anda berhasil login sebagai user');
+                            redirect(base_url('/'), 'refresh');
+                            break;
+                        default:
+                            break;
+                    }
+                }else {
+                    $this->session->set_flashdata('msg', 'User tidak aktif !');
+			        redirect(base_url('login'), 'refresh');
                 }
             }else {
                 $this->session->set_flashdata('msg', 'Username dan password tidak cocok !');

@@ -17,6 +17,7 @@ $route['upload-pembayaran'] = 'home/upload_pembayaran';
 
 
 $route['dashboard'] = 'dashboard/index';
+$route['grafik'] = 'dashboard/grafik';
 
 $route['tipekamar'] = 'tipekamar/index';
 $route['tipekamar/tambah'] = 'tipekamar/tipekamar_tambah';
@@ -28,7 +29,9 @@ $route['kamar/hapus/(:num)'] = 'kamar/kamar_hapus/$1';
 
 $route['pemesan'] = 'pemesan/index';
 
+
 $route['transaksi'] = 'transaksi/index';
+$route['transaksi/kirim'] = 'transaksi/send';
 $route['transaksi/approve/(:num)'] = 'transaksi/approve/$1';
 $route['transaksi/hapus/(:num)'] = 'transaksi/hapus/$1';
 

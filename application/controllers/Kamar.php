@@ -5,6 +5,7 @@ class Kamar extends CI_Controller {
 
     public function index()
     {
+        $this->db->order_by('id', 'DESC');
         $kamar = $this->db->get('rooms')->result_array();
         $tipekamar = $this->db->get('classes')->result_array();
         $data = [
