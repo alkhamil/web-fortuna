@@ -155,7 +155,7 @@ p{margin-bottom:.3em;}
                                             </div>
                                         </div>
                                         
-                                        <button type="submit" id="btn-lanjut" class="btn btn-primary" disabled style="cursor:not-allowed">Lanjutkan Checkin</button>
+                                        <button type="submit" id="btn-lanjut" class="btn btn-primary" disabled style="cursor:not-allowed">Lanjut Memesan</button>
                                         <h5 id="jam" class="text-danger text-center text-bold"></h5>
                                     </div>
                                 </div>

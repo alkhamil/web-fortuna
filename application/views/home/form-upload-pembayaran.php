@@ -67,6 +67,7 @@
                                         </div>
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-primary">Proses</button>
+                                            <a href="<?= base_url('my-reservation') ?>" class="btn btn-outline-danger">Bayar Nanti</a>
                                         </div>
                                     </form>
                                 </div>

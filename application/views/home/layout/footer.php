@@ -144,7 +144,7 @@
                     </table>`);
         var d = new Date();
         var n = d.getHours();
-        if (n<17) {
+        if (n<23) {
             $('#btn-lanjut').removeAttr('disabled');
             $('#btn-lanjut').removeAttr('style');
         }else {

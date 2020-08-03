@@ -23,6 +23,8 @@
                                     <th>Nama Pelanggan</th>
                                     <th>Email Pelanggan</th>
                                     <th>Biaya Sewa</th>
+                                    <th>Durasi Menginap</th>
+                                    <th>Jenis Kamar</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -30,6 +32,11 @@
                                 <?php foreach ($transaksi as $key => $t) { ?>
                                     <?php 
                                         $rsv = $this->db->get_where('reservations',['id'=>$t['reservation_id']])->row_array();
+                                        $checkin = date_create(date('Y-m-d', strtotime($rsv['checkin_date'])));
+                                        $checkout = date_create(date('Y-m-d', strtotime($rsv['checkout_date'])));
+                                        $diffdate = date_diff($checkin, $checkout);
+                                        $durasi = $diffdate->format("%a");
+                                        $jeniskamar = $this->db->get_where('classes', ['id'=>$rsv['class_id']])->row_array()['name'];
                                     ?>
                                     <tr>
                                         <td><?= $key+1 ?></td>
@@ -37,11 +44,14 @@
                                         <td><?= $rsv['name'] ?></td>
                                         <td><?= $rsv['email'] ?></td>
                                         <td>Rp. <?= number_format($t['amount']) ?></td>
+                                        <td><?= $durasi ?> Hari</td>
+                                        <td><?= $jeniskamar ?></td>
                                         <td>
-                                            <?php if ($t['payment_status'] == 0) { ?>
+                                            <?php if ($t['payment_status'] == 0 || $t['payment_status'] == 2) { ?>
                                                 <a href="<?= base_url('transaksi/approve/'.$t['id']) ?>" class="btn btn-success btn-sm">Approve</a>
+                                            <?php }else { ?>
+                                                <a class="btn btn-secondary btn-sm" target="_blank" href="<?= base_url('assets/uploads/'.$t['bukti_transfer']) ?>">Lihat Bukti Pembayaran</a>
                                             <?php } ?>
-                                            <a class="btn btn-secondary btn-sm" target="_blank" href="<?= base_url('assets/uploads/'.$t['bukti_transfer']) ?>">Lihat Bukti Pembayaran</a>
                                         </td>
                                     </tr>
                                 <?php } ?>

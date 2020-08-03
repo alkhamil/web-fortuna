@@ -28,11 +28,11 @@
                         <div class="row">
                             <input type="hidden" name="durasi-menginap" id="durasi-menginap">
                             <div class="col-md-4">
-                                <label>Check In</label>
+                                <label>Mulai Menginap</label>
                                 <input type="text" class="form-control" id="check-in" name="check-in" autocomplete="off">
                             </div>
                             <div class="col-md-4">
-                                <label>Check Out</label>
+                                <label>Selesai Menginap</label>
                                 <input type="text" class="form-control" id="check-out" name="check-out" autocomplete="off">
                             </div>
                             <div class="col-md-4">

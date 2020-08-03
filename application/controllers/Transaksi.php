@@ -46,6 +46,37 @@ class Transaksi extends CI_Controller {
         $this->email->send();
     }
 
+    public function eticket($data)
+    {
+        $config = [
+            'mailtype'  => 'html',
+            'charset'   => 'utf-8',
+            'wordwrap'=> TRUE,
+            'protocol'  => 'smtp',
+            'smtp_host' => 'smtp.gmail.com',
+            'smtp_user' => 'rakaciahotel7@gmail.com',  // Email gmail
+            'smtp_pass'   => 'polisi86',  // Password gmail
+            'smtp_crypto' => 'ssl',
+            'smtp_port'   => 465,
+            'crlf'    => "\r\n",
+            'newline' => "\r\n"
+        ];
+        // Load library email dan konfigurasinya
+        $this->load->library('email', $config);
+        $this->email->initialize($config);
+        // Email dan nama pengirim
+        $this->email->from('rakaciahotel7@gmail.com', 'Rakacia Hotel');
+        // Email penerima
+        $this->email->to($data['email']); // Ganti dengan email tujuan
+        // Subject email
+        $this->email->subject('e-Ticket');
+        // Isi email
+        $msg = $this->load->view('e-ticket',$data,true);
+        $this->email->message($msg);
+
+        $this->email->send();
+    }
+
     public function approve($id)
     {
         $t = $this->db->get_where('transactions', ['id'=>$id])->row_array();
@@ -85,6 +116,7 @@ class Transaksi extends CI_Controller {
         $this->db->update('rooms', $room);
         
         $this->send_email($data);
+        $this->eticket($data);
 
         $this->session->set_flashdata('msg', 'Data sudah di approve');
         redirect(base_url('transaksi'),'refresh');

@@ -158,7 +158,8 @@ class Home extends CI_Controller {
 
             $trx = [
                 'id' => $id,
-                'bukti_transfer' => $upload_data['uploads']['file_name']
+                'bukti_transfer' => $upload_data['uploads']['file_name'],
+                'payment_status' => 2,
             ];
             $this->db->where('id', $id);
             $query = $this->db->update('transactions', $trx);
